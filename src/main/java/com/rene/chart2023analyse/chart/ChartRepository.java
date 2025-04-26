@@ -1,12 +1,11 @@
-package com.rene.spotify2023analyse.spotify;
+package com.rene.chart2023analyse.chart;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
-public interface SpotifyRepository extends JpaRepository<Track, Long> {
+public interface ChartRepository extends JpaRepository<Track, Long> {
     List<Track> findByReleasedYear(int releaseYear);
 
     List<Track> findByArtistCountEquals(int artistCount);

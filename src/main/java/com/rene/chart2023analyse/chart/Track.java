@@ -1,10 +1,10 @@
-package com.rene.spotify2023analyse.spotify;
+package com.rene.chart2023analyse.chart;
 
-import com.rene.spotify2023analyse.spotify.exceptions.ChartNegativeRankException;
+import com.rene.chart2023analyse.chart.exceptions.ChartNegativeRankException;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "spotify2023")
+@Table(name = "charts2023")
 public class Track {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

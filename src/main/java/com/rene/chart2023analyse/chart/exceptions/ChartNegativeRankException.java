@@ -1,4 +1,4 @@
-package com.rene.spotify2023analyse.spotify.exceptions;
+package com.rene.chart2023analyse.chart.exceptions;
 
 public class ChartNegativeRankException extends RuntimeException {
     public ChartNegativeRankException() {

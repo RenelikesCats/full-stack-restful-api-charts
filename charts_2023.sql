@@ -19,10 +19,10 @@
 -- Table structure for table `spotify2023`
 --
 
-DROP TABLE IF EXISTS `spotify2023`;
+DROP TABLE IF EXISTS `charts2023`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `spotify2023` (
+CREATE TABLE `charts2023` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
   `track_name` text,
   `artist_name` text,

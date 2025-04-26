@@ -1,4 +1,4 @@
-package com.rene.spotify2023analyse.spotify.exceptions;
+package com.rene.chart2023analyse.chart.exceptions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

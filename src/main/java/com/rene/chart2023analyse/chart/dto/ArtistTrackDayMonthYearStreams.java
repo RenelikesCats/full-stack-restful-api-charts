@@ -1,6 +1,6 @@
-package com.rene.spotify2023analyse.spotify.dto;
+package com.rene.chart2023analyse.chart.dto;
 
-import com.rene.spotify2023analyse.spotify.Track;
+import com.rene.chart2023analyse.chart.Track;
 
 public record ArtistTrackDayMonthYearStreams(String artistName, String trackName, String date,
                                              long streams) {

@@ -1,7 +1,7 @@
-package com.rene.spotify2023analyse.spotify;
+package com.rene.chart2023analyse.chart;
 
-import com.rene.spotify2023analyse.spotify.exceptions.PlatformNotFoundException;
-import com.rene.spotify2023analyse.spotify.exceptions.TrackNotFoundException;
+import com.rene.chart2023analyse.chart.exceptions.PlatformNotFoundException;
+import com.rene.chart2023analyse.chart.exceptions.TrackNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -9,40 +9,40 @@ import java.util.List;
 
 @Service
 @Transactional(readOnly = true)
-public class SpotifyService {
-    private final SpotifyRepository spotifyRepository;
+public class ChartService {
+    private final ChartRepository chartRepository;
 
 
-    public SpotifyService(SpotifyRepository spotifyRepository) {
-        this.spotifyRepository = spotifyRepository;
+    public ChartService(ChartRepository spotifyRepository) {
+        this.chartRepository = spotifyRepository;
     }
 
     List<Track> findAll() {
-        return spotifyRepository.findAll();
+        return chartRepository.findAll();
     }
 
     List<Track> findOnlySoloArtists() {
-        return spotifyRepository.findByArtistCountEquals(1);
+        return chartRepository.findByArtistCountEquals(1);
     }
 
     List<Track> findByReleasedYear(int releaseYear) {
-        return spotifyRepository.findByReleasedYear(releaseYear);
+        return chartRepository.findByReleasedYear(releaseYear);
     }
 
     List<Track> findAllByPlatform_And_ChartsByRank(String platform, int rank) {
         String chart = platform.toLowerCase() + "Charts";
         switch (chart) {
             case "spotifyCharts" -> {
-                return spotifyRepository.findAllSpotifyChartsByRank(rank);
+                return chartRepository.findAllSpotifyChartsByRank(rank);
             }
             case "appleCharts" -> {
-                return spotifyRepository.findAllAppleChartsByRank(rank);
+                return chartRepository.findAllAppleChartsByRank(rank);
             }
             case "deezerCharts" -> {
-                return spotifyRepository.findAllDeezerChartsByRank(rank);
+                return chartRepository.findAllDeezerChartsByRank(rank);
             }
             case "shazamCharts" -> {
-                return spotifyRepository.findAllShazamChartsByRank(rank);
+                return chartRepository.findAllShazamChartsByRank(rank);
             }
             default -> throw new PlatformNotFoundException();
         }
@@ -50,8 +50,8 @@ public class SpotifyService {
 
     @Transactional
     void delete(long id) {
-        Track track = spotifyRepository.findById(id).orElseThrow(() -> new TrackNotFoundException(id));
-        spotifyRepository.deleteById(id);
+        Track track = chartRepository.findById(id).orElseThrow(() -> new TrackNotFoundException(id));
+        chartRepository.deleteById(id);
     }
 
     @Transactional
@@ -59,22 +59,22 @@ public class SpotifyService {
         String chart = platform.toLowerCase() + "Charts";
         switch (chart) {
             case "spotifyCharts" -> {
-                Track track = spotifyRepository.findById(id).orElseThrow(() -> new TrackNotFoundException(id));
+                Track track = chartRepository.findById(id).orElseThrow(() -> new TrackNotFoundException(id));
                 track.setSpotifyCharts(rank);
 
             }
             case "appleCharts" -> {
-                Track track = spotifyRepository.findById(id).orElseThrow(() -> new TrackNotFoundException(id));
+                Track track = chartRepository.findById(id).orElseThrow(() -> new TrackNotFoundException(id));
                 track.setAppleCharts(rank);
 
             }
             case "deezerCharts" -> {
-                Track track = spotifyRepository.findById(id).orElseThrow(() -> new TrackNotFoundException(id));
+                Track track = chartRepository.findById(id).orElseThrow(() -> new TrackNotFoundException(id));
                 track.setDeezerCharts(rank);
 
             }
             case "shazamCharts" -> {
-                Track track = spotifyRepository.findById(id).orElseThrow(() -> new TrackNotFoundException(id));
+                Track track = chartRepository.findById(id).orElseThrow(() -> new TrackNotFoundException(id));
                 track.setShazamCharts(rank);
 
 
