@@ -1,5 +1,6 @@
 package com.rene.spotify2023analyse.spotify;
 
+import com.rene.spotify2023analyse.spotify.exceptions.ChartNegativeRankException;
 import jakarta.persistence.*;
 
 @Entity
@@ -7,39 +8,79 @@ import jakarta.persistence.*;
 public class Track {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", columnDefinition = "int UNSIGNED not null")
     private Long id;
 
+    @Column(name = "track_name")
     private String trackName;
 
-
+    @Column(name = "artist_name")
     private String artistName;
 
-
+    @Column(name = "artist_count")
     private int artistCount;
 
-
+    @Column(name = "released_year")
     private int releasedYear;
 
-
+    @Column(name = "released_month")
     private int releasedMonth;
 
-
+    @Column(name = "released_day")
     private int releasedDay;
 
+    @Column(name = "spotify_charts")
     private int spotifyCharts;
 
+    @Column(name = "streams")
     private long streams;
 
+    @Column(name = "apple_charts")
     private int appleCharts;
 
+    @Column(name = "deezer_charts")
     private int deezerCharts;
 
+    @Column(name = "shazam_charts")
     private int shazamCharts;
 
+    @Column(name = "bpm")
     private int bpm;
 
-
+    @Column(name = "`key`")
     private String key;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setSpotifyCharts(int spotifyCharts) {
+        if (spotifyCharts < 0) {
+            throw new ChartNegativeRankException();
+        }
+        this.spotifyCharts = spotifyCharts;
+    }
+
+    public void setAppleCharts(int appleCharts) {
+        if (appleCharts < 0) {
+            throw new ChartNegativeRankException();
+        }
+        this.appleCharts = appleCharts;
+    }
+
+    public void setDeezerCharts(int deezerCharts) {
+        if (deezerCharts < 0) {
+            throw new ChartNegativeRankException();
+        }
+        this.deezerCharts = deezerCharts;
+    }
+
+    public void setShazamCharts(int shazamCharts) {
+        if (shazamCharts < 0) {
+            throw new ChartNegativeRankException();
+        }
+        this.shazamCharts = shazamCharts;
+    }
 
     public String getTrackName() {
         return trackName;
@@ -91,9 +132,5 @@ public class Track {
 
     public String getKey() {
         return key;
-    }
-
-    public Long getId() {
-        return id;
     }
 }
