@@ -13,8 +13,8 @@ public class ChartService {
     private final ChartRepository chartRepository;
 
 
-    public ChartService(ChartRepository spotifyRepository) {
-        this.chartRepository = spotifyRepository;
+    public ChartService(ChartRepository chartRepository) {
+        this.chartRepository = chartRepository;
     }
 
     List<Track> findAll() {
