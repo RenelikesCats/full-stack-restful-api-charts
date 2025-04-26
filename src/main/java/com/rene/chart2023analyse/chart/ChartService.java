@@ -1,5 +1,6 @@
 package com.rene.chart2023analyse.chart;
 
+import com.rene.chart2023analyse.chart.dto.NewTrack;
 import com.rene.chart2023analyse.chart.exceptions.PlatformNotFoundException;
 import com.rene.chart2023analyse.chart.exceptions.TrackNotFoundException;
 import org.springframework.stereotype.Service;
@@ -79,7 +80,16 @@ public class ChartService {
             }
             default -> throw new PlatformNotFoundException();
         }
+    }
 
+    @Transactional
+    long create(NewTrack newTrack) {
+        Track track = new Track(newTrack.trackName(), newTrack.artistName(), newTrack.artistCount(),
+                newTrack.releasedYear(), newTrack.releasedMonth(), newTrack.releasedDay(),
+                newTrack.spotifyCharts(), newTrack.streams(), newTrack.appleCharts(), newTrack.deezerCharts(), newTrack.shazamCharts(),
+                newTrack.bpm(), newTrack.key());
+
+        return chartRepository.save(track).getId();
     }
 }
 

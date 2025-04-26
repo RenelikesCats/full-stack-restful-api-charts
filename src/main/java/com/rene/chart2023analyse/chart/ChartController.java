@@ -1,7 +1,9 @@
 package com.rene.chart2023analyse.chart;
 
 import com.rene.chart2023analyse.chart.dto.ArtistTrackDayMonthYearStreams;
+import com.rene.chart2023analyse.chart.dto.NewTrack;
 import io.swagger.v3.oas.annotations.Operation;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.stream.Stream;
@@ -51,5 +53,10 @@ public class ChartController {
         chartService.updateChartRank(id, platform, rank);
     }
 
+    @Operation(summary = "Create new track")
+    @PostMapping("/tracks/new")
+    public long create(@RequestBody @Valid NewTrack newTrack) {
+        return chartService.create(newTrack);
+    }
 
 }

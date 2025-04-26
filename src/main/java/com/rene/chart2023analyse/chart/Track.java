@@ -50,6 +50,25 @@ public class Track {
     @Column(name = "`key`")
     private String key;
 
+    public Track(String trackName, String artistName, int artistCount, int releasedYear, int releasedMonth, int releasedDay, int spotifyCharts, long streams, int appleCharts, int deezerCharts, int shazamCharts, int bpm, String key) {
+        this.trackName = trackName;
+        this.artistName = artistName;
+        this.artistCount = artistCount;
+        this.releasedYear = releasedYear;
+        this.releasedMonth = releasedMonth;
+        this.releasedDay = releasedDay;
+        this.spotifyCharts = spotifyCharts;
+        this.streams = streams;
+        this.appleCharts = appleCharts;
+        this.deezerCharts = deezerCharts;
+        this.shazamCharts = shazamCharts;
+        this.bpm = bpm;
+        this.key = key;
+    }
+
+    protected Track() {
+    }
+
     public Long getId() {
         return id;
     }
