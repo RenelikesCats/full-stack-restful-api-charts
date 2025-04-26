@@ -48,7 +48,8 @@ public class ChartController {
     @Operation(summary = "Updates the chart rank for an existing track in DB")
     @PutMapping("/tracks/{id}/{platform}/setrank")
     public void updateChartRank(@PathVariable long id, @PathVariable String platform, @RequestParam int rank) {
-        chartService.updateChartRank(id,platform, rank);
+        chartService.updateChartRank(id, platform, rank);
     }
+
 
 }

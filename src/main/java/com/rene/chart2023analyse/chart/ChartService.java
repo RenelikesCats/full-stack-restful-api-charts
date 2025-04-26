@@ -76,12 +76,9 @@ public class ChartService {
             case "shazamCharts" -> {
                 Track track = chartRepository.findById(id).orElseThrow(() -> new TrackNotFoundException(id));
                 track.setShazamCharts(rank);
-
-
             }
             default -> throw new PlatformNotFoundException();
         }
-
 
     }
 }
