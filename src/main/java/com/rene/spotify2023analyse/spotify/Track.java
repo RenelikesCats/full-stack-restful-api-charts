@@ -15,100 +15,85 @@ public class Track {
     private String artistName;
 
 
-    private Integer artistCount;
+    private int artistCount;
 
 
-    private Integer releasedYear;
+    private int releasedYear;
 
 
-    private Integer releasedMonth;
+    private int releasedMonth;
 
 
-    private Integer releasedDay;
+    private int releasedDay;
 
-    private Integer spotifyCharts;
+    private int spotifyCharts;
 
-    private Integer streams;
+    private long streams;
 
-    private Integer appleCharts;
+    private int appleCharts;
 
-    private Integer deezerCharts;
+    private int deezerCharts;
 
-    private Integer shazamCharts;
+    private int shazamCharts;
 
-    private Integer bpm;
+    private int bpm;
 
 
     private String key;
-
-    public Long getId() {
-        return id;
-    }
-
 
     public String getTrackName() {
         return trackName;
     }
 
-
     public String getArtistName() {
         return artistName;
     }
 
-
-    public Integer getArtistCount() {
+    public int getArtistCount() {
         return artistCount;
     }
 
-
-    public Integer getReleasedYear() {
+    public int getReleasedYear() {
         return releasedYear;
     }
 
-
-    public Integer getReleasedMonth() {
+    public int getReleasedMonth() {
         return releasedMonth;
     }
 
-
-    public Integer getReleasedDay() {
+    public int getReleasedDay() {
         return releasedDay;
     }
 
-
-    public Integer getSpotifyCharts() {
+    public int getSpotifyCharts() {
         return spotifyCharts;
     }
 
-
-    public Integer getStreams() {
+    public long getStreams() {
         return streams;
     }
 
-
-    public Integer getAppleCharts() {
+    public int getAppleCharts() {
         return appleCharts;
     }
 
-
-    public Integer getDeezerCharts() {
+    public int getDeezerCharts() {
         return deezerCharts;
     }
 
-
-    public Integer getShazamCharts() {
+    public int getShazamCharts() {
         return shazamCharts;
     }
 
-
-    public Integer getBpm() {
+    public int getBpm() {
         return bpm;
     }
-
 
     public String getKey() {
         return key;
     }
 
-
+    public Long getId() {
+        return id;
+    }
 }
