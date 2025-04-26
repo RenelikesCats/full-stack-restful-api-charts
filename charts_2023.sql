@@ -16,10 +16,11 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `spotify2023`
+-- Table structure for table `charts2023`
 --
-
-DROP TABLE IF EXISTS `charts2023`;
+CREATE DATABASE IF NOT EXISTS `charts2023`; 
+USE `charts2023`;
+DROP TABLE  IF EXISTS `charts2023`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `charts2023` (
@@ -42,7 +43,7 @@ CREATE TABLE `charts2023` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `spotify2023`
+-- Dumping data for table `charts2023`
 --
 
 LOCK TABLES `charts2023` WRITE;
