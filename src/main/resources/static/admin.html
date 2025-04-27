@@ -22,13 +22,25 @@
     <div id="admin-area">
         <h2>Admin Mode</h2>
         <p>Welcome, Admin!</p>
+        <p id="admin-msg" style="color: green"></p>
+
         <div>
             <label for="track-id">Track id: </label>
             <input id="track-id" type="number">
             <button id="delete-track" data-url="/tracks" class="admin-button">Delete Track by ID</button>
         </div>
         <div>
-            <button id="update-chart-rank" class="admin-button">Update Chart Rank</button>
+            <label for="update-track-id">Update track id: </label>
+            <input id="update-track-id" type="number">
+            <label for="platform">Platform And Rank:</label>
+            <select id="platform">
+                <option value="spotify">Spotify</option>
+                <option value="apple">Apple</option>
+                <option value="deezer">Deezer</option>
+                <option value="shazam">Shazam</option>
+            </select>
+            <input id="update-rank" type="number" placeholder="Rank">
+            <button id="update-chart-rank" class="admin-button" data-url="/tracks">Update Chart Rank</button>
 
         </div>
     </div>

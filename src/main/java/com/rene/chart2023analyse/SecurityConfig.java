@@ -2,9 +2,11 @@ package com.rene.chart2023analyse;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
@@ -38,10 +40,10 @@ public class SecurityConfig {
 
     @Bean
     SecurityFilterChain geefRechten(HttpSecurity http) throws Exception {
-        http.formLogin(Customizer.withDefaults());
+        http.formLogin(Customizer.withDefaults()).csrf(AbstractHttpConfigurer::disable);
         http.authorizeHttpRequests(requests
                 -> requests.requestMatchers("/css/**", "/js/**", "/", "/index.html", "/principal",
-                        "/tracks/filterByPlatform/**","/tracks","/tracks/solo", "/tracks/filterByYear", "/accessDenied.html").permitAll()
+                        "/tracks/filterByPlatform/**", "/tracks", "/tracks/solo", "/tracks/filterByYear", "/accessDenied.html").permitAll()
                 .anyRequest().authenticated()
         );
         http.exceptionHandling(ex -> ex.accessDeniedPage("/accessDenied.html"));

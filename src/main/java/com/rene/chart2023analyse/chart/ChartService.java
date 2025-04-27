@@ -58,24 +58,21 @@ public class ChartService {
     @Transactional
     void updateChartRank(long id, String platform, int rank) {
         String chart = platform.toLowerCase() + "Charts";
+        Track track = chartRepository.findById(id).orElseThrow(() -> new TrackNotFoundException(id));
         switch (chart) {
             case "spotifyCharts" -> {
-                Track track = chartRepository.findById(id).orElseThrow(() -> new TrackNotFoundException(id));
                 track.setSpotifyCharts(rank);
 
             }
             case "appleCharts" -> {
-                Track track = chartRepository.findById(id).orElseThrow(() -> new TrackNotFoundException(id));
                 track.setAppleCharts(rank);
 
             }
             case "deezerCharts" -> {
-                Track track = chartRepository.findById(id).orElseThrow(() -> new TrackNotFoundException(id));
                 track.setDeezerCharts(rank);
 
             }
             case "shazamCharts" -> {
-                Track track = chartRepository.findById(id).orElseThrow(() -> new TrackNotFoundException(id));
                 track.setShazamCharts(rank);
             }
             default -> throw new PlatformNotFoundException();
