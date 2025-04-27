@@ -2,16 +2,16 @@ package com.rene.chart2023analyse;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
 import javax.sql.DataSource;
 
 @Configuration
+@EnableWebSecurity
 public class SecurityConfig {
     private final DataSource dataSource;
 
@@ -38,11 +38,13 @@ public class SecurityConfig {
 
     @Bean
     SecurityFilterChain geefRechten(HttpSecurity http) throws Exception {
-        http.formLogin(Customizer.withDefaults()).csrf(AbstractHttpConfigurer::disable);
-        http.authorizeHttpRequests(requests -> requests.requestMatchers(HttpMethod.GET).permitAll()
-                .requestMatchers(HttpMethod.POST).hasAuthority("admin")
+        http.formLogin(Customizer.withDefaults());
+        http.authorizeHttpRequests(requests
+                -> requests.requestMatchers("/css/**", "/js/**", "/", "/index.html", "/principal",
+                        "/tracks/filterByPlatform/**","/tracks","/tracks/solo", "/tracks/filterByYear", "/accessDenied.html").permitAll()
+                .anyRequest().authenticated()
         );
+        http.exceptionHandling(ex -> ex.accessDeniedPage("/accessDenied.html"));
         return http.build();
     }
-
 }

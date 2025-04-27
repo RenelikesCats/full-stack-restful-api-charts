@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.stream.Stream;
 
 @RestController
-@RequestMapping("chart2023/tracks")
+@RequestMapping("tracks")
 public class ChartController {
     private final ChartService chartService;
 
@@ -37,7 +37,7 @@ public class ChartController {
     }
 
     @Operation(summary = "Find all tracks by given platform and given rank")
-    @GetMapping("{platform}/rank")
+    @GetMapping("filterByPlatform/{platform}/rank")
     public Stream<ArtistTrackDayMonthYearStreams> findAllByPlatform_And_ChartsByRank(@PathVariable String platform, @RequestParam int rank) {
         return chartService.findAllByPlatform_And_ChartsByRank(platform, rank).stream().map(ArtistTrackDayMonthYearStreams::new);
     }

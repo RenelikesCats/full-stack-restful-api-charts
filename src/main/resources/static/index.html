@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Chart API Demo</title>
+    <script src="/js/index.js" type="module"></script>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+<div class="container">
+    <header>
+    <a href="/login" class="login-icon" title="Login"><i class="fas fa-user-circle"></i></a>
+        <h1> <a href="/index.html"> Music Chart API Demo </a></h1>
+        <a href="admin.html"><button id="admin-btn">  Admin mode</button></a>
+    </header>
+
+    <div id="get-methods">
+        <h2>Retrieve Music</h2>
+
+        <div>
+            <button type="submit" id="get-all-tracks" data-url="/tracks">Find All Tracks</button>
+        </div>
+
+        <div>
+            <button id="get-solo-artists" data-url="/tracks/solo">Solo Artists Tracks</button>
+        </div>
+
+        <div>
+            <label for="releaseYear">Filter by Release Year:</label>
+            <input type="number" id="releaseYear" placeholder="YYYY">
+            <button id="filter-by-year" data-url="/tracks/filterByYear?releaseYear=" data-target="year-filter-display">Filter</button>
+            <div id="year-filter-display" class="data-display"></div>
+        </div>
+
+        <div>
+            <label for="platform">Platform:</label>
+
+            <select id="platform">
+                <option value="spotify">Spotify</option>
+                <option value="apple">Apple</option>
+                <option value="deezer">Deezer</option>
+                <option value="shazam">Shazam</option>
+            </select>
+
+            <label for="rank">Rank:</label>
+            <input type="number" id="rank" placeholder="e.g., 1">
+            <button id="filter-by-platform-rank" data-url="/tracks/filterByPlatform/" data-target="platform-rank-display">Filter by Platform & Rank</button>
+            <div id="platform-rank-display" class="data-display"></div>
+        </div>
+    </div>
+</div>
+<br>
+
+<div id="response-container" hidden>
+    <h1>Tracks</h1>
+    <p id="error-message" style="color: red; display: none;">Error loading tracks.</p>
+    <div id="tracks-container">
+
+    </div>
+</div>
+
+</body>
+</html>
