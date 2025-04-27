@@ -48,7 +48,7 @@ h2 {
     font-size: 0.9em;
 }
 
-#admin-btn {
+#admin-btn,#log-off {
     float: right;
     width: 200px;
     margin-right: 50px;

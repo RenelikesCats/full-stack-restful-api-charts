@@ -37,7 +37,6 @@ public class SecurityConfig {
                 """);
         return admin;
     }
-
     @Bean
     SecurityFilterChain geefRechten(HttpSecurity http) throws Exception {
         http.formLogin(Customizer.withDefaults()).csrf(AbstractHttpConfigurer::disable);

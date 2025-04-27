@@ -8,7 +8,8 @@ const adminMsg = document.getElementById("admin-msg")
 
 const ADMIN_PRIVILEGE_DOM = {
     deleteTrack: document.getElementById("delete-track"),
-    updateChartRankBtn: document.getElementById("update-chart-rank")
+    updateChartRankBtn: document.getElementById("update-chart-rank"),
+    logOffBtn: document.getElementById("log-off")
 }
 
 let platformChoice = "spotify"
@@ -17,6 +18,8 @@ platform.addEventListener("change", () => {
     console.log(platform.value)
     platformChoice = platform.value
 })
+
+
 ADMIN_PRIVILEGE_DOM.deleteTrack.addEventListener("click", async () => {
     errorMessage.hidden=true
     const id = document.getElementById("track-id")
