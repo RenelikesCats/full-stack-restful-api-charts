@@ -17,17 +17,20 @@
         <h1><a href="/index.html"> Music Chart API Demo </a></h1>
         <br>
         <a href="index.html"> ↩️Back </a>
-        <a><button id="log-off"> Log off</button></a>
+        <a>
+            <button id="log-off"> Log off</button>
+        </a>
     </header>
 
     <div id="admin-area">
         <h2>Admin Mode</h2>
-        <p>Welcome, Admin!</p>
+        <p id="admin-welcome">Welcome, Admin!</p>
         <p id="admin-msg" style="color: green"></p>
 
         <div>
             <label for="track-id">Track id: </label>
             <input id="track-id" type="number">
+            <button id="find-by-id" data-url="/tracks" class="admin-button"> Find Track By Id</button>
             <button id="delete-track" data-url="/tracks" class="admin-button">Delete Track by ID</button>
         </div>
         <div>
@@ -42,8 +45,10 @@
             </select>
             <input id="update-rank" type="number" placeholder="Rank">
             <button id="update-chart-rank" class="admin-button" data-url="/tracks">Update Chart Rank</button>
-
         </div>
+        <label for="createTrack">Create New</label>
+        <button id="createTrack" class="admin-button">Add new track</button>
+
     </div>
 
     <div id="response-container" hidden>
@@ -51,6 +56,92 @@
         <p id="error-message" style="color: red; display: none;">Error loading tracks.</p>
         <div id="tracks-container">
 
+        </div>
+    </div>
+
+    <div id="dataModal">
+        <div class="modal-content">
+            <span class="close-button" id="closeBtn">&times;</span>
+            <h2 class="text-xl font-semibold mb-6 text-gray-800">Enter New Track Data</h2>
+            <form id="dataForm" class="space-y-4">
+                <div>
+                    <label for="trackName" class="form-label">Track Name:</label>
+                    <input type="text" id="trackName" name="trackName" class="form-input" placeholder="Enter track name"
+                           required>
+                    <div id="trackNameError" class="form-error"></div>
+                </div>
+                <div>
+                    <label for="artistName" class="form-label">Artist Name:</label>
+                    <input type="text" id="artistName" name="artistName" class="form-input"
+                           placeholder="Enter artist name" required>
+                    <div id="artistNameError" class="form-error"></div>
+                </div>
+                <div>
+                    <label for="artistCount" class="form-label">Artist Count:</label>
+                    <input type="number" id="artistCount" name="artistCount" class="form-input" value="1" min="1"
+                           required>
+                    <div id="artistCountError" class="form-error"></div>
+                </div>
+                <div class="grid grid-cols-3 gap-4">
+                    <div>
+                        <label for="releasedDay" class="form-label">Release Day:</label>
+                        <input type="number" id="releasedDay" name="releasedDay" class="form-input" value="1" min="1"
+                               max="31" required>
+                        <div id="releasedDayError" class="form-error"></div>
+                    </div>
+                    <div>
+                        <label for="releasedMonth" class="form-label">Release Month:</label>
+                        <input type="number" id="releasedMonth" name="releasedMonth" class="form-input" value="1"
+                               min="1" max="12" required>
+                        <div id="releasedMonthError" class="form-error"></div>
+                    </div>
+                    <div>
+                        <label for="releasedYear" class="form-label">Release Year:</label>
+                        <input type="number" id="releasedYear" name="releasedYear" class="form-input" value="2024"
+                               min="1900" max="2099" required>
+                        <div id="releasedYearError" class="form-error"></div>
+                    </div>
+                </div>
+                <div class="grid grid-cols-4 gap-4">
+                    <div>
+                        <label for="spotifyCharts" class="form-label">Spotify Charts:</label>
+                        <input type="number" id="spotifyCharts" name="spotifyCharts" class="form-input" value="0"
+                               min="0">
+                        <div id="spotifyChartsError" class="form-error"></div>
+                    </div>
+                    <div>
+                        <label for="appleCharts" class="form-label">Apple Charts:</label>
+                        <input type="number" id="appleCharts" name="appleCharts" class="form-input" value="0" min="0">
+                        <div id="appleChartsError" class="form-error"></div>
+                    </div>
+                    <div>
+                        <label for="deezerCharts" class="form-label">Deezer Charts:</label>
+                        <input type="number" id="deezerCharts" name="deezerCharts" class="form-input" value="0" min="0">
+                        <div id="deezerChartsError" class="form-error"></div>
+                    </div>
+                    <div>
+                        <label for="shazamCharts" class="form-label">Shazam Charts:</label>
+                        <input type="number" id="shazamCharts" name="shazamCharts" class="form-input" value="0" min="0">
+                        <div id="shazamChartsError" class="form-error"></div>
+                    </div>
+                </div>
+                <div>
+                    <label for="streams" class="form-label">Streams:</label>
+                    <input type="number" id="streams" name="streams" class="form-input" value="1" min="0" required>
+                    <div id="streamsError" class="form-error"></div>
+                </div>
+                <div>
+                    <label for="bpm" class="form-label">BPM:</label>
+                    <input type="number" id="bpm" name="bpm" class="form-input" value="1" min="1" required>
+                    <div id="bpmError" class="form-error"></div>
+                </div>
+                <div>
+                    <label for="key" class="form-label">Key:</label>
+                    <input type="text" id="key" name="key" class="form-input" placeholder="e.g., C major">
+                    <div id="keyError" class="form-error"></div>
+                </div>
+                <button id="dataModal-submit" type="submit" class="submit-button">Submit Data</button>
+            </form>
         </div>
     </div>
 </div>

@@ -61,4 +61,9 @@ public class ChartController {
         return chartService.create(newTrack);
     }
 
+    @GetMapping("{id}")
+    ResponseConciseDTO findById(@PathVariable long id) {
+        Track track = chartService.findById(id);
+        return new ResponseConciseDTO(track);
+    }
 }

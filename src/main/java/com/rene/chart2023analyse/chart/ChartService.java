@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional(readOnly = true)
@@ -87,6 +88,10 @@ public class ChartService {
                 newTrack.bpm(), newTrack.key());
 
         return chartRepository.save(track).getId();
+    }
+
+   Track findById(long id) {
+        return chartRepository.findById(id).orElseThrow(()-> new TrackNotFoundException(id));
     }
 }
 
