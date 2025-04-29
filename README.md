@@ -1,6 +1,4 @@
-## Full-Stack Web Application (Work in Progress)
-
-**Important Note:** This project is currently under development.
+## Full-Stack Web Application
 
 **Focus:** This application primarily demonstrates the back-end RESTful API capabilities. Consequently, the front-end features a minimal design.
 
