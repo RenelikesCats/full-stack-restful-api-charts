@@ -9,6 +9,9 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.logout.HeaderWriterLogoutHandler;
+import org.springframework.security.web.authentication.logout.HttpStatusReturningLogoutSuccessHandler;
+import org.springframework.security.web.header.writers.ClearSiteDataHeaderWriter;
 
 import javax.sql.DataSource;
 
@@ -16,7 +19,7 @@ import javax.sql.DataSource;
 @EnableWebSecurity
 public class SecurityConfig {
     private final DataSource dataSource;
-
+    private final HeaderWriterLogoutHandler clearSiteData = new HeaderWriterLogoutHandler(new ClearSiteDataHeaderWriter(ClearSiteDataHeaderWriter.Directive.COOKIES));
     public SecurityConfig(DataSource dataSource) {
         this.dataSource = dataSource;
     }
@@ -37,15 +40,22 @@ public class SecurityConfig {
                 """);
         return admin;
     }
+
+
+
     @Bean
     SecurityFilterChain giveRights(HttpSecurity http) throws Exception {
         http.formLogin(Customizer.withDefaults()).csrf(AbstractHttpConfigurer::disable);
         http.authorizeHttpRequests(requests
                 -> requests.requestMatchers("/css/**", "/js/**", "/", "/index.html", "/principal",
-                        "/tracks/filterByPlatform/**", "/tracks", "/tracks/solo", "/tracks/filterByYear", "/accessDenied.html").permitAll()
+                        "/tracks/filterByPlatform/**", "/tracks", "/tracks/solo", "/tracks/filterByYear", "/accessDenied.html","/logout","/logout*").permitAll()
                 .anyRequest().authenticated()
         );
-        http.exceptionHandling(ex -> ex.accessDeniedPage("/accessDenied.html"));
+        http.logout((logout) -> logout.addLogoutHandler(clearSiteData));
+                http.exceptionHandling(ex -> ex.accessDeniedPage("/accessDenied.html"));
         return http.build();
     }
+
+
+
 }

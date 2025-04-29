@@ -149,3 +149,8 @@ ADMIN_PRIVILEGE_DOM.dataModalSubmit.addEventListener("click", async (e) => {
         }
     }
 })
+ADMIN_PRIVILEGE_DOM.logOffBtn.addEventListener("click",async ()=> {
+    const response = await fetch("/logout")
+    window.location.href="index.html"
+    alert("Logged off successfully!")
+})
